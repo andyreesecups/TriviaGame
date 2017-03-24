@@ -16,24 +16,24 @@ var questArr = [
     new Questions("What year did the New Orleans Saints win the Super Bowl", ["2010", "2006", "2012", "2003"])
 ];
 
+
+
 var usedQuestions = [];
 
 function Questions(question, answers, img, time) {
     this.question = question;
     this.answers = answers;
     this.img = img || null;
-    this.time = time || 7; //seconds
+    this.time = time || 9; //seconds
 }
 
-displayRandom();
 
-//    $("#question").html("<p> " + question + "</p>");
-// $("#question").html("<p> " + answer + " </p>");
-// $("#time-remaining").html("<p> " + "Time Remaining: " + counter + "</p>");
 
 // Display a random question object's question, answers, and handled time remaining
 //------------------------------------------------------------------
 function displayRandom() {
+ 
+ 	$("#question").empty();
 
 
     // pick a random question object from the questArr
@@ -51,8 +51,10 @@ function displayRandom() {
     // pull question from the random question object
     var question = questObj.question;
 
-    // display question in console
-    // console.log(question);
+    // display question
+    $("#question").append("<p> " + question + "</p>");
+
+    
 
 
     // Display the random question object's answers
@@ -60,6 +62,7 @@ function displayRandom() {
 
     // pull the answers array from the random question object
     var answers = questObj.answers;
+
 
     // pick the answers from the answers array
     //-----------------------------------------------
@@ -70,9 +73,9 @@ function displayRandom() {
 
         //display answer in console
         // console.log(answer);
-        $("#question").html("<p> " + answer + "</p>");
-        $("#question").html("<p> " + question + "</p>");
-        $("#timeremaining").html("<p> " + "Time Remaining: " + counter + "</p>");
+        $("#question").append("<p> " + answer + "</p>");
+        
+        
 
     }
 
@@ -84,7 +87,8 @@ function displayRandom() {
 
     //pulled the time from the random question object
     var counter = questObj.time; // var counter = 5;
-
+    
+        
     // create an interval to calculate time remaining
     var interval = setInterval(function() {
         //decrement counter to calculate time remaining
@@ -98,10 +102,12 @@ function displayRandom() {
             // stop calculating time remaining 
             clearInterval(interval);
             shiftQuestionObj(index);
+            
         }
     }, 1000);
 
-
+var display = ("<p> " + "Time Remaining:" + counter + "</p>");
+    $("#timeremaining").html(display);
 
 }
 
@@ -119,6 +125,7 @@ function shiftQuestionObj(index) {
 
 }
 
+
 // Once the Start button is clicked generate a random Question and start counter
 document.getElementById("startreset").onclick = function() {
     displayRandom();
@@ -126,25 +133,3 @@ document.getElementById("startreset").onclick = function() {
 }
 
 
-
-
-
-
-// If user picks the correct answer
-//-----------------------------------
-// stop counter
-
-//increase score by 1
-
-//generate a new random question and answers
-
-//and start counter after 5 seconds without user input
-
-//else
-//-----------------------
-
-//stop counter
-
-// show counter after 5 seconds
-
-//generate a new question and answers
